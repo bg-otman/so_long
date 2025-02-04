@@ -19,7 +19,6 @@ MLX_LIB = -lmlx -lX11 -lXext -lm
 OBJS = $(SRCS:.c=.o)
 OBJS_BNS = $(SRC_BNS:.c=.o)
 NAME = so_long
-NAME_BNS = so_long_bonus
 
 all: $(NAME)
 
@@ -32,10 +31,8 @@ $(LIBFT) :
 $(PRINTF) :
 	@$(MAKE) -C printf
 
-bonus : $(NAME_BNS)
-
-$(NAME_BNS) : $(OBJS_BNS) $(LIBFT) $(PRINTF)
-	@$(CC) $(CFLAGS) $(OBJS_BNS)  $(MLX_LIB) $(PRINTF) $(LIBFT) -o $(NAME_BNS)
+bonus : $(OBJS_BNS) $(LIBFT) $(PRINTF)
+	@$(CC) $(CFLAGS) $(OBJS_BNS)  $(MLX_LIB) $(PRINTF) $(LIBFT) -o $(NAME)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -44,7 +41,7 @@ clean:
 	@rm -f mandatory/*.o bonus/*.o libft/*.o get_next_line/*.o printf/*.o
 
 fclean: clean
-	@rm -f $(NAME) $(NAME_BNS) $(LIBFT) $(PRINTF)
+	@rm -f $(NAME) $(LIBFT) $(PRINTF)
 
 re: fclean all
 
